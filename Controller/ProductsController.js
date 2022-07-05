@@ -3,7 +3,7 @@ const path =require('path');
 
 
 exports.addProductForm=(req,res,next)=>{
-    res.render('addProdForm',{title:"Product Form",
+    res.render('addprodForm',{title:"Product Form",
                                 });
 }
 
