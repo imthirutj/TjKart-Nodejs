@@ -32,4 +32,4 @@ app.use(admin);
 const get404Cont=require('./Controller/404Controller');
 app.use(get404Cont.get404);
 
-app.listen(8080);
+app.listen(process.env.PORT || 5000);
