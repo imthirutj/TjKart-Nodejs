@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname,'Public')));
 app.use(express.urlencoded({extended: false}));
 
 //set view engine
+app.set('views', path.join(__dirname, 'Views'));
 app.set('view engine','ejs');
 
 
