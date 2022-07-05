@@ -1,0 +1,59 @@
+<%- include ('../Includes/head.ejs') %>
+   
+<style>
+    p.desc{
+        max-width: 300px;
+    }
+
+    img.pimg{
+        height: 200px;
+    }
+</style>
+    </head>
+ 
+    </body>
+    
+    <%- include ('../Includes/Header.ejs') %>
+        <h1>Products List for admin purposes</h1>
+     
+
+        <body>
+
+
+            <div class="container">
+                <div class="row">
+                    <% for(var li of list) { %>
+                    <div class="col-sm-3">
+                        
+                        <div class="card">
+                            <!-- <p><%= li.Pimag %></p> -->
+                            <%if(li.Pimag !==null){ %>
+                            <img class="pimg" src="/Image/<%=li.Pimag %>" alt="Denim Jeans" style="width:100%">
+                            <% } else if(li.PimageUrl!== ""){ %>
+                                <img class="pimg" src="<%=li.PimageUrl %>" alt="Denim Jeans" style="width:100%">
+                             <% } else{%>
+                                
+                                <img class="pimg" src="https://actogmbh.com/files/no-product-image.png" alt="Denim Jeans" style="width:100%">
+
+                                <% }%>
+                            <h1><%= li.PName %></h1>
+                            <p>(<%= li.Catg %>)</p>
+                            <p class="price">$<%= li.Price %></p>
+                            <p class="desc"><%= li.Desc %>.</p>
+                            <p><%= li.Quantity %> qty available.</p>
+                            <p><button class="edit" id="but" onclick="location.href='/home';" >Edit</button></p>
+
+                            <form action="/admin/deleteProduct" method="post">
+                                <p><button class="delete" id="but" type="submit">Delete</button></p>
+                            </form>
+                           
+                        </div>
+                        
+
+
+                </div>
+                <% } %>
+            </div>
+        </body>
+
+        </html>
