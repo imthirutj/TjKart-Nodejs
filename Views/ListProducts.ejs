@@ -1,21 +1,24 @@
 <%- include ('Includes/head.ejs') %>
-   
-<style>
-    p.desc{
-        max-width: 300px;
-    }
 
-    img.pimg{
-        height: 200px;
-    }
-</style>
+    <style>
+        p.desc {
+            max-width: 300px;
+        }
+
+        img.pimg {
+            height: 200px;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/popupList.css">
+    <script src="/js/popupList.js"></script>
     </head>
- 
+
     </body>
-    
+
     <%- include ('Includes/Header.ejs') %>
         <h1>List of products</h1>
-     
+
 
         <body>
 
@@ -23,35 +26,83 @@
             <div class="container">
                 <div class="row">
                     <% for(var li of list) { %>
-                    <div class="col-sm-3">
-                        
-                        <div class="card">
-                            <!-- <p><%= li.Pimag %></p> -->
-                            <%if(li.Pimag !==null){ %>
-                            <img class="pimg" src="/Image/<%=li.Pimag %>" alt="Denim Jeans" style="width:100%">
-                            <% } else if(li.PimageUrl!== ""){ %>
-                                <img class="pimg" src="<%=li.PimageUrl %>" alt="Denim Jeans" style="width:100%">
-                             <% } else{%>
-                                
-                                <img class="pimg" src="https://actogmbh.com/files/no-product-image.png" alt="Denim Jeans" style="width:100%">
+                        <div class="col-sm-3">
 
-                                <% }%>
-                            <h1><%= li.PName %></h1>
-                            <p>(<%= li.Catg %>)</p>
-                            <p class="price">$<%= li.Price %></p>
-                            <p class="desc"><%= li.Desc %>.</p>
-                            <p><%= li.Quantity %> qty available.</p>
+                            <div class="card">
+                                <!-- <p><%= li.Pimag %></p> -->
+                                <%if(li.Pimag !==null){ %>
+                                    <img class="pimg" src="/Image/<%=li.Pimag %>" alt="Denim Jeans" style="width:100%">
+                                <% } else if(li.PimageUrl!=="" ){ %>
+                                        <img class="pimg" src="<%=li.PimageUrl %>" alt="Denim Jeans" style="width:100%">
+                                <% } else{%>
 
-                            <form action="/add-to-kart" method="post">
-                                <p><button id="but" type="submit">Add to Cart</button></p>
-                            </form>
-                          
+                                            <img class="pimg" src="https://actogmbh.com/files/no-product-image.png"
+                                                alt="Denim Jeans" style="width:100%">
+
+                                 <% }%>
+                                                <h1>
+                                                    <%= li.PName %>
+                                                </h1>
+                                                <p>(<%= li.Catg %>)</p>
+                                                <p class="price">$<%= li.Price %>
+                                                </p>
+                                                <p class="desc">
+                                                    <%= li.Desc %>.
+                                                </p>
+                                                <p>
+                                                    <%= li.Quantity %> qty available.
+                                                </p>
+
+
+
+                                                <p>
+                                                    <a href="/product/<%= li.Id %>">Details</a>
+                                                </p>
+
+                                              
+                                                <p><button id="but"  onclick="ConfirmForm(<%= li.Id %>);" >Add to Cart</button></p>
+                                                
+
+                            </div>
+
+
+
                         </div>
-                        
 
+                      <% } %>   
+                <div id="BlockUIConfirm" class="BlockUIConfirm" style="display:none ;">
+                    <div class="blockui-mask"></div>
+                    <div class="RowDialogBody">
+                        <div class="confirm-header row-dialog-hdr-success">
+                            Confirm Acceptance
+                        </div>
+                        <div class="confirm-body">
+                            Confirm that you wish to add this product to kart
+                        </div>
+                        <div class="confirm-btn-panel pull-right">
+                            <div class="btn-holder pull-right">
 
+                                <form action="/add-to-kart" method="post">
+                                    <input type="hidden" value="" name="prodId" id="prodId">
+                                    <input type="hidden" value="1" name="qty">
+
+                                    <input type="button" class="row-dialog-btn btn btn-naked" value="No, Cancel"
+                                    onclick="$('#BlockUIConfirm').hide();" />
+                                    <input type="submit" class="row-dialog-btn btn btn-success" value="Yes, Accept"
+                                    onclick="Submit();" />
+                                </form>
+
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <% } %>
+                       
+                </div>
+
+
+
             </div>
         </body>
 

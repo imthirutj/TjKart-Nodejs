@@ -26,6 +26,7 @@ const storage=multer.diskStorage({
 });
 exports.upload=multer({storage:storage,});
 
+
 exports.postProduct=(req,res,next)=>{
     const pname=req.body.pname;
     const desc=req.body.desc;

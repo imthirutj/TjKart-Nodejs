@@ -1,54 +1,22 @@
 [
     {
-        "PName": "Fan",
-        "Desc": "electronic machine",
-        "Quantity": "5",
-        "Price": "20",
-        "Catg": "adult",
-        "Pimag": "1656956679994.jpg"
-    },
-    {
-        "PName": "Bike",
-        "Desc": "new bike",
-        "Quantity": "221",
-        "Price": "1001",
-        "Catg": "common",
-        "Pimag": "1656956974052.jpg"
-    },
-    {
+        "Id": 1,
         "PName": "gun",
         "Desc": "Gun is a combat tool",
         "Quantity": "5",
-        "Price": "10001",
+        "Price": 100,
         "Catg": "kids",
         "Pimag": null,
         "PimageUrl": "https://images.ctfassets.net/81iqaqpfd8fy/48xEQ6zQIgsmUM0O4GIA6U/6625807c191ec870da274c0de5461a3b/Guns.jpg?h=620&w=1440"
     },
     {
-        "PName": "laptop",
-        "Desc": "",
+        "Id": 2,
+        "PName": "fan",
+        "Desc": "Gun is a combat tool",
         "Quantity": "5",
-        "Price": "10001",
-        "Catg": "common",
+        "Price": 100,
+        "Catg": "kids",
         "Pimag": null,
-        "PimageUrl": ""
-    },
-    {
-        "PName": "laptop",
-        "Desc": "electronic machine",
-        "Quantity": "5",
-        "Price": "10001",
-        "Catg": "adult",
-        "Pimag": null,
-        "PimageUrl": ""
-    },
-    {
-        "PName": "tv",
-        "Desc": "television- sont bravia",
-        "Quantity": "1",
-        "Price": "400",
-        "Catg": "common",
-        "Pimag": null,
-        "PimageUrl": ""
+        "PimageUrl": "https://images.ctfassets.net/81iqaqpfd8fy/48xEQ6zQIgsmUM0O4GIA6U/6625807c191ec870da274c0de5461a3b/Guns.jpg?h=620&w=1440"
     }
 ]

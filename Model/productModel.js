@@ -24,17 +24,26 @@ module.exports=class Product{
     constructor(pname,desc,qty,price,catg,pimag,pimageUrl){
 
         console.log("constructor called");
-       
+        
+        readProducts((rp)=>{
+            console.log("There are "+rp.length+"products available");
+            
+        this.Id=(rp.length+1);
+          
         this.PName=pname;
         console.log("this current product: "+this.PName);
         this.Desc=desc;
         this.Quantity=qty;
-        this.Price=price;
+        this.Price=parseFloat(price);
         this.Catg=catg;
         this.Pimag=pimag;
         this.PimageUrl=pimageUrl;
 
         console.log("this current Image name: "+this.Pimag);
+        });
+        
+
+        
        // this.Pimag=pimage;
       
        
@@ -62,5 +71,14 @@ module.exports=class Product{
 
     static getProduct(cb){
         readProducts(cb);
+    }
+
+    static findById(id,cb){
+        readProducts(prods=>{
+            const product = prods.find(p=>p.Id==id);
+            console.log('this prod Id '+product.Id);
+           cb(product);
+
+        })
     }
 }
