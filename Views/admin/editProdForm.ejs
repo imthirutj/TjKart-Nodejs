@@ -1,0 +1,43 @@
+<%- include ('../Includes/head.ejs') %>
+<link rel="stylesheet" href="/css/addProductForm.css">
+</head>
+</body>
+<%- include ('../Includes/Header.ejs') %>
+    <div>
+  <form action="/admin/editproduct" method="post" >
+
+    <input type="text" id="pId" name="pId" value="<%= Prod.Id %>">
+    <label for="ProductName">Product Name</label>
+    <input type="text" id="pname" name="pname" placeholder="Product name.." value="<%= Prod.PName %>" required>
+
+    <label for="desc">Description</label>
+    <input type="text" id="desc" name="desc" placeholder="Enter Description"  value="<%= Prod.Desc %>">
+
+    <label for="qty">Quantity</label>
+    <input type="text" id="qty" name="qty" placeholder="Enter Quantity" value="<%= Prod.Quantity %>" required>
+
+    <label for="price">Price</label>
+    <input type="text" id="price" name="price" placeholder="Enter single Quantity Price"  value="<%= Prod.Price %>" required>
+    
+    <label for="pimage">Image</label>
+    <input type="file" id="pimage" name="pimage"   ><br>
+
+    <label for="pimageUrl">Image URL</label>
+    <input type="text" id="pimageUrl" name="pimageUrl" placeholder="Enter image url"  value="<%= Prod.PimageUrl %>" ><br>
+
+    <label for="category">Category</label>
+    <select id="category" name="category">
+      <option value="kids">Kids</option>
+      <option value="adult">Adults</option>
+      <option value="female">For Females</option>
+      <option value="common">Common</option>
+    </select>
+  
+    <input type="submit" value="Update">
+  </form>
+</div>
+
+</body>
+</html>
+
+

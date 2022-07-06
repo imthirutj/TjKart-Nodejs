@@ -21,15 +21,17 @@ const readProducts=(cb)=>{
 
 module.exports=class Product{
     
-    constructor(pname,desc,qty,price,catg,pimag,pimageUrl){
+    
+    constructor(pId,pname,desc,qty,price,catg,pimag,pimageUrl){
 
         console.log("constructor called");
         
-        readProducts((rp)=>{
-            console.log("There are "+rp.length+"products available");
+       
             
-        this.Id=(rp.length+1);
-          
+        if(pId !==null){
+            this.Id=pId;
+        }
+          console.log("The product Id is"+pId)
         this.PName=pname;
         console.log("this current product: "+this.PName);
         this.Desc=desc;
@@ -40,7 +42,7 @@ module.exports=class Product{
         this.PimageUrl=pimageUrl;
 
         console.log("this current Image name: "+this.Pimag);
-        });
+    
         
 
         
@@ -53,10 +55,31 @@ module.exports=class Product{
     saveProduct(){
         //get all existing prodduct and add to current product
         console.log("save process started");
-        readProducts((prodOb)=>{
-            prodOb.push(this);
-            
 
+
+        readProducts((prodOb)=>{
+            
+        if(this.Id){
+           
+            const edIndex=prodOb.findIndex(p=>p.Id==this.Id);
+            const upProd=[...prodOb];
+            upProd[edIndex]=this;
+
+            fs.writeFile(pa,JSON.stringify(upProd),(err)=>{
+                if(err){
+                console.log('cannot Write for edited products\n'+err);
+                }else{
+                    console.log("for edit, written successfully");
+                }
+            });
+
+        }
+         else{
+
+           
+             console.log("There are "+prodOb.length+"products available");
+            this.Id=(prodOb.length+1);
+            prodOb.push(this);
             fs.writeFile(pa,JSON.stringify(prodOb),(err)=>{
                 if(err){
                 console.log('cannot Write\n'+err);
@@ -64,6 +87,7 @@ module.exports=class Product{
                     console.log("written successfully");
                 }
             });
+        }//end else
 
         });
 
@@ -79,6 +103,31 @@ module.exports=class Product{
             console.log('this prod Id '+product.Id);
            cb(product);
 
-        })
+        });
+    }
+
+    static deleteProdFunc(id,cb){
+
+        readProducts(prods=>{
+           const indProd=prods.findIndex(p=>p.Id===id);
+           
+          
+           prods=prods.filter(p=>p.Id!==parseInt(id));
+
+           console.log("id passed to delete is "+id);
+           
+           const updProd=[...prods];
+           console.log(updProd);
+           fs.writeFile(pa,JSON.stringify(updProd),(err)=>{
+            if(err){
+            console.log('cannot Write deleted\n'+err);
+            }else{
+                console.log("deleted written successfully");
+                cb("DELETED SUCCESS");
+            }
+            });
+
+
+        });
     }
 }

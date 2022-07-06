@@ -14,6 +14,8 @@ router.get('/Listproducts',ProdCont.getProduct);
 router.post('/Listproducts',ProdCont.upload.single('pimage'), ProdCont.postProduct);
 
 router.get('/adminProducts',admCont.getProduct);
-
+router.get('/admin/editProductForm/:pId',admCont.editProd);
+router.post('/admin/editproduct',admCont.postEditProd);
+router.get('/admin/deleteProduct/:pId',admCont.deleteProd);
 
 module.exports=router;

@@ -39,10 +39,10 @@ exports.postProduct=(req,res,next)=>{
     
 
 
-    const prodObj = new productModel(pname,desc,qty,price,catg,pimag,pimageUrl);
+    const prodObj = new productModel(null,pname,desc,qty,price,catg,pimag,pimageUrl);
     prodObj.saveProduct();
     console.log("This product saved");
-    res.redirect('/ListProducts');
+    res.redirect('/adminProducts');
 
 
 

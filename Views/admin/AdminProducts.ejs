@@ -42,11 +42,11 @@
                             <p class="price">$<%= li.Price %></p>
                             <p class="desc"><%= li.Desc %>.</p>
                             <p><%= li.Quantity %> qty available.</p>
-                            <p><button class="edit" id="but" onclick="location.href='/home';" >Edit</button></p>
+                          
+                        
 
-                            <form action="/admin/deleteProduct" method="post">
-                                <p><button class="delete" id="but" type="submit">Delete</button></p>
-                            </form>
+                            <a href="/admin/editProductForm/<%= li.Id %>">Edit</a>
+                            <a href="/admin/deleteProduct/<%= li.Id %>">Delete</a>
                            
                         </div>
                         
