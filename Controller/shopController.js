@@ -55,5 +55,5 @@ exports.delkart=(req,res,next)=>{
         console.log(status);
 
     });
-    res.send('welcome to delete kaer');
+    res.redirect('/cart');
 }

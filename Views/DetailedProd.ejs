@@ -35,36 +35,7 @@
          
           </div>
         </div>
-        <!-- <div class="img-select">
-          <div class="img-item">
-            <a href="#" data-id="1">
-              <img
-                src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg"
-                alt="shoe image">
-            </a>
-          </div>
-          <div class="img-item">
-            <a href="#" data-id="2">
-              <img
-                src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
-                alt="shoe image">
-            </a>
-          </div>
-          <div class="img-item">
-            <a href="#" data-id="3">
-              <img
-                src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
-                alt="shoe image">
-            </a>
-          </div>
-          <div class="img-item">
-            <a href="#" data-id="4">
-              <img
-                src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
-                alt="shoe image">
-            </a>
-          </div>
-        </div> -->
+     
       </div>
       <!-- card right -->
       <div class="product-content">
@@ -90,7 +61,13 @@
           
           <ul>
             <li>Color: <span>Black</span></li>
-            <li>Available: <span>in stock</span></li>
+            <% if(prod.Quantity>0) { %>
+            <li>Available: <span>in stock (<%= prod.Quantity %>)</span></li>
+            <% } else { %>
+              <li>Available: <span>out stock</span></li>
+              <% } %>
+
+
             <li>Category: <span><%= prod.Catg %></span></li>
             <li>Shipping Area: <span>All over the world</span></li>
             <li>Shipping Fee: <span>Free</span></li>
@@ -98,11 +75,21 @@
         </div>
 
         <div class="purchase-info">
-          <input type="number" id="qty" name="qty" min="0" value="1">
+          <input type="number" id="qty" name="qty" min="0" max="<%= prod.Quantity %>" value="1">
           
+          <% if(prod.Quantity>0) { %>
           <button type="button" id="myBtn" class="btn" value="<%= prod.Id %>">
             Add to Cart <i class="fas fa-shopping-cart"></i>
           </button>
+          <% } else { %>
+
+            <button type="button" id="myBtnDis" class="btn" >
+              Out of Stock <i class="fas fa-shopping-cart"></i>
+            </button>
+
+            <% } %>
+
+
           <button type="button" class="btn">Compare</button>
         </div>
         <script>

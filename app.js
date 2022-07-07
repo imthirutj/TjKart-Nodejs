@@ -18,6 +18,13 @@ app.set('views', path.join(__dirname, 'Views'));
 app.set('view engine','ejs');
 
 
+
+//set database connecyion
+const db = require('./Util/database');
+// db.execute('select * from products')
+//             .then(res=>console.log(res[0]))
+//             .catch(err=>console.log(err));
+
 // '/' default page
 //import home route
 const home=require('./Routes/home');
