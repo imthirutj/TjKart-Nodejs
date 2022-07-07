@@ -16,6 +16,9 @@
 
   <link rel="stylesheet" href="/css/detProd.css">
   <script src="/js/detProd.js"></script>
+
+  <link rel="stylesheet" href="/css/popupList.css">
+  <script src="/js/popupList.js"></script>
 </head>
 </body>
 <%- include ('Includes/Header.ejs') %>
@@ -77,8 +80,8 @@
         </div>
 
         <div class="product-price">
-          <p class="last-price">Old Price: <span>$257.00</span></p>
-          <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
+          <p class="last-price">Old Price: <span>$<%= prod.Price %></span></p>
+          <p class="new-price">New Price: <span><%= prod.Price %></span></p>
         </div>
 
         <div class="product-detail">
@@ -95,16 +98,59 @@
         </div>
 
         <div class="purchase-info">
-          <input type="number" min="0" value="1">
-          <button type="button" class="btn">
+          <input type="number" id="qty" name="qty" min="0" value="1">
+          
+          <button type="button" id="myBtn" class="btn" value="<%= prod.Id %>">
             Add to Cart <i class="fas fa-shopping-cart"></i>
           </button>
           <button type="button" class="btn">Compare</button>
         </div>
+        <script>
+          $(document).ready(function(){
+            $("#myBtn").click(function(){
+            var inp = $("#qty").val();
+            var Id=$("#myBtn").val();
+            ConfirmFormDet(Id,inp);
+
+          })
+        });
+
+        </script>
 
 
       </div>
     </div>
+
+
+    <div id="BlockUIConfirm" class="BlockUIConfirm" style="display:none ;">
+      <div class="blockui-mask"></div>
+      <div class="RowDialogBody">
+          <div class="confirm-header row-dialog-hdr-success">
+              Confirm Acceptance
+          </div>
+          <div class="confirm-body">
+              Confirm that you wish to add this product to kart
+          </div>
+          <div class="confirm-btn-panel pull-right">
+              <div class="btn-holder pull-right">
+
+                  <form action="/add-to-kart" method="post">
+                      <input type="hidden" value="" name="prodId" id="prodId">
+                      <input type="hidden" value="1" name="qty" id="xqty">
+
+                      <input type="button" class="row-dialog-btn btn btn-naked" value="No, Cancel"
+                      onclick="$('#BlockUIConfirm').hide();" />
+                      <input type="submit" class="row-dialog-btn btn btn-success" value="Yes, Accept"
+                      onclick="Submit();" />
+                  </form>
+
+                  
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+
   </div>
 
 

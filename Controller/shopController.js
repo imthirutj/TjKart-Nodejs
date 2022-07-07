@@ -22,6 +22,8 @@ exports.getProdDet=(req,res,next)=>{
 const kartMod= require('../Model/kartModel');
 exports.addkart=(req,res,next)=>{
     const ProdId = req.body.prodId;
+
+
     const qty    =req.body.qty;
     console.log("The Prod Id for kart is "+ProdId);
 
@@ -30,9 +32,28 @@ exports.addkart=(req,res,next)=>{
         
         const kMod = new kartMod();
         console.log("Price of this product is "+pp.Price);
-        kMod.saveProdInKarts(pp.Id,pp.Price,qty);
+        kMod.saveProdInKarts(pp.Id,pp.Price,pp.PName,qty);
         res.redirect('/Listproducts');
      });
 
 
 };
+
+exports.getkart=(req,res,next)=>{
+
+    kartMod.getkarts(kartProds=>{
+        res.render('cart',{title:'Cart Page',kart:kartProds});
+
+    })
+    
+}
+
+
+exports.delkart=(req,res,next)=>{
+
+    kartMod.deletekart(req.params.kId,(status)=>{
+        console.log(status);
+
+    });
+    res.send('welcome to delete kaer');
+}

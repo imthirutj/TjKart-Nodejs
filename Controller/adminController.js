@@ -59,10 +59,15 @@ exports.postEditProd=(req,res,next)=>{
 
 }
 
+const KartMod=require('../Model/kartModel'); 
+const { stat } = require('fs');
 exports.deleteProd=(req,res,next)=>{
     const pId=req.params.pId;
     prodMod.deleteProdFunc(pId,cb=>{
         console.log(cb);
+    });
+    KartMod.deletekart(pId,status=>{
+        console.log(status);
     })
     res.redirect('/adminProducts');
 }

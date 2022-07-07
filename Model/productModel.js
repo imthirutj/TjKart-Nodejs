@@ -29,13 +29,13 @@ module.exports=class Product{
        
             
         if(pId !==null){
-            this.Id=pId;
+            this.Id=parseInt(pId);
         }
           console.log("The product Id is"+pId)
         this.PName=pname;
         console.log("this current product: "+this.PName);
         this.Desc=desc;
-        this.Quantity=qty;
+        this.Quantity=parseInt(qty);
         this.Price=parseFloat(price);
         this.Catg=catg;
         this.Pimag=pimag;

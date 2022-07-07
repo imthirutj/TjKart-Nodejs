@@ -59,9 +59,11 @@
                                                     <a href="/product/<%= li.Id %>">Details</a>
                                                 </p>
 
-                                              
+                                              <% if(li.Quantity >0) { %>
                                                 <p><button id="but"  onclick="ConfirmForm(<%= li.Id %>);" >Add to Cart</button></p>
-                                                
+                                                <% } else{ %>
+                                                    <p><button id="but"  onclick="javascript:void()" >Out of Stock</button></p>
+                                                    <% } %>
 
                             </div>
 
